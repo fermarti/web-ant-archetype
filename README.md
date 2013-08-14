@@ -5,4 +5,4 @@ Maven archetype for web projects, exposing a Demo REST API, with Spring, Spring 
 
 --------
 
-Arquetipo Maven para generar proyectos web. Expone un servicio REST. El proyecto ya tiene configurados Spring, Spring MVC, Spring JPA, Hibernate, Logback. Contiene tests del servicio y es compatible con tareas Ant.
+Arquetipo Maven para generar proyectos web. Expone un servicio REST. El proyecto ya tiene configurados Spring, Spring MVC, Spring JPA, Hibernate, Logback. Contiene tests del servicio y es compatible con tareas Ant..
