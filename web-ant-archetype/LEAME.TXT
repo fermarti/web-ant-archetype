@@ -1,0 +1,35 @@
+     _                         _   _               __  __                                    _          _   
+    / \   _ __ __ _ _   _  ___| |_(_)_ __   ___   |  \/  | __ ___   _____ _ __              / \   _ __ | |_ 
+   / _ \ | '__/ _` | | | |/ _ \ __| | '_ \ / _ \  | |\/| |/ _` \ \ / / _ \ '_ \   _____    / _ \ | '_ \| __|
+  / ___ \| | | (_| | |_| |  __/ |_| | |_) | (_) | | |  | | (_| |\ V /  __/ | | | |_____|  / ___ \| | | | |_ 
+ /_/   \_\_|  \__, |\__,_|\___|\__|_| .__/ \___/  |_|  |_|\__,_| \_/ \___|_| |_|         /_/   \_\_| |_|\__|
+                 |_|                |_|                                                                            
+			  
+			  
+==== Qué es? ====
+Es un arquetipo para Maven 3.x con compatibilidad para Ant de una aplicación web que incluye las siguientes librerías:
+    Logueo: SFL4J + Logback
+    Acceso a dato: Spring data + Hibernate
+    Manejo MVC: Spring MVC
+    Testing: junit + jasmineJs
+ 
+     
+==== Documentación ====
+ 
+    1. Estructura de directorios
+        src\main\java\${PACKAGE}\${ARTIFACTID}\repository -> directorio donde se encuentran las interfaces de objetos de acceso a persistencia.
+        src\main\java\${PACKAGE}\${ARTIFACTID}\service -> directorio donde se encuentran las interfaces de objetos con lógica de negocio.
+        src\main\java\${PACKAGE}\${ARTIFACTID}\service\impl -> directorio donde se encuentran las implementaciones del punto anterior.
+        .m2\repository -> directorio donde se copiarán lasdependencias del proyecto para utilizar el plugin de ant sin necesidad de conexión a internet.
+        .m2\reportes\checkstyle_rules_dosideas.xml -> Customización de la reglas de checkstyle.
+        .m2\reportes\pmd_rules_dosideas.xml -> Customización de las reglas de pmd.
+        build.xml -> contiene las tareas ant que pueden ejecutarse (ver http://maven.apache.org/plugins/maven-ant-plugin/).
+     
+    2. Cómo compilar con Ant?
+        Para utilizar ant sin acceder al repositorio, necesitamos realizar los siguientes pasos:        
+        2.1 Copiar las dependencias al proyecto, desde el directorio del proyecto (directorio en el cual se encuentra el pom.xml) ejecutar el siguiente comando: mvn dependency:copy-dependencies -DoutputDirectory="${PATH_PROYECTO}/.m2/repository" -Dmdep.useRepositoryLayout=true
+        2.2 Ejecutar mvn ant:ant (genera nuevo build.xml)
+        2.3 Ejecutar la tarea Ant: ant clean dist
+
+
+==== Licencia ====

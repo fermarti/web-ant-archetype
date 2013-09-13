@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ar.com.connectis-ict</groupId>
+    <artifactId>web-ant-archetype</artifactId>
+    <version>1.0.RELEASE</version>
+    <packaging>war</packaging>
+
+    <name>web-ant-archetype</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--Propiedades -->        
+
+        <!--Versiones -->
+        <jdk.version>1.6</jdk.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <logback.version>1.0.9</logback.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
+        <hibernate.version>4.1.10.Final</hibernate.version>
+        <junit.version>4.11</junit.version>    
+        
+        <!--Variables para mvn ant:ant -->
+        <user.home></user.home>
+        <maven.repo.local>.m2/repository</maven.repo.local>
+        <maven.reportes.config.dir>.m2/reportes</maven.reportes.config.dir>
+        <maven.settings.offline>true</maven.settings.offline>    
+    </properties>
+
+    <dependencies>
+        
+        <!--Inyeccion de dependencias-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <!--Persistencia-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.3.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+ 
+        <!--Web & REST-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        
+        <!-- dependencias provistas por el application server-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        
+        <!--Logueo-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        
+        <!--Logueo Bridge-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>   
+        
+        <!--Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>0.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>     
+        
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.2.9</version>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <!-- Generacion del WAR-->            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <warSourceExcludes>**/.svn/**</warSourceExcludes>
+                    <webResources>
+                        <webResource>
+                            <directory>/src/main/webapp/WEB-INF</directory>
+                            <includes>
+                                <include>web.xml</include>
+                            </includes>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                        </webResource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <!-- Compatibilidad con Ant -->
+            <plugin>
+                <!--
+                    This plugin provides the ability to run Ant tasks from within Maven. 
+                    You can even embed your Ant scripts in the POM
+                    http://maven.apache.org/plugins/maven-antrun-plugin/
+                -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ant-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <id>generar-maven-build</id>
+                        <phase>package</phase>						
+                        <goals>
+                            <goal>ant</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Reporte -->
+            <plugin>
+                <!--
+                    The Site Plugin is used to generate a site for the project. 
+                    The generated site also includes the project's reports that were configured in the POM.
+                    http://maven.apache.org/plugins/maven-site-plugin/                
+                -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin> 
+                            <!--
+                                The Maven Project Info Reports plugin is used to generate reports information about the project.
+                                http://maven.apache.org/plugins/maven-project-info-reports-plugin/
+                            -->
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>2.6</version>
+                            <configuration>
+                                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                            </configuration>
+                            <reportSets>
+                                <reportSet>
+                                    <reports>
+                                        <report>index</report>
+                                        <report>summary</report>
+                                    </reports>
+                                </reportSet>
+                            </reportSets>                          
+                        </plugin>
+                        <plugin>
+                            <!--
+                                The JXR Plugin produces a cross-reference of the project's sources. 
+                                The generated reports make it easier for the user to reference or find specific lines of code. 
+                                It is also handy when used with the PMD Plugin for referencing errors found in the code
+                                http://maven.apache.org/plugins/maven-jxr-plugin/
+                            -->
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <version>2.3</version>
+                        </plugin>
+                        <plugin>
+                            <!--
+                                The Checkstyle Plugin generates a report regarding the code style used by the developers.    
+                                http://maven.apache.org/plugins/maven-checkstyle-plugin/
+                            -->
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>2.10</version>
+                            <configuration>
+                                <configLocation>${maven.reportes.config.dir}/checkstyle_rules.xml</configLocation>
+                            </configuration>
+                            <reportSets>
+                                <reportSet>
+                                    <reports>
+                                        <report>checkstyle</report>
+                                    </reports>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+                        <plugin>
+                            <!--
+                                The PMD Plugin allows you to automatically run the PMD code analysis tool on your project's source code and generate a site report with its results    
+                                http://maven.apache.org/plugins/maven-pmd-plugin/
+                            -->
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>3.0.1</version>
+                            <configuration>
+                                <rulesets>
+                                    <ruleset>${maven.reportes.config.dir}/pmd_rules.xml</ruleset>
+                                </rulesets>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <!--
+                                This plugin provides the features of Cobertura within the Maven 2 & 3 environment    
+                                http://mojo.codehaus.org/cobertura-maven-plugin/
+                            -->
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>cobertura-maven-plugin</artifactId>
+                            <version>2.5.2</version>
+                            <configuration>
+                                <formats>
+                                    <format>html</format>
+                                    <format>xml</format>
+                                </formats>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <!--
+                                The Javadoc Plugin uses the Javadoc tool to generate javadocs for the specified project.    
+                                http://maven.apache.org/plugins/maven-javadoc-plugin/
+                            -->
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.9</version>
+                            <reportSets>
+                                <reportSet>
+                                    <id>html</id>
+                                    <reports>
+                                        <report>javadoc</report>
+                                    </reports>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>                       
+        </plugins>
+    </build>
+
+</project>

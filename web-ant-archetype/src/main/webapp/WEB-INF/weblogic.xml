@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://www.bea.com/ns/weblogic/weblogic-web-app">
+    <context-root>/arquetipo-web</context-root>
+    <container-descriptor>
+        <prefer-application-packages>
+            <package-name>antlr.*</package-name>
+            <package-name>org.hibernate.*</package-name>
+            <package-name>javax.persistence.*</package-name>
+        </prefer-application-packages>
+    </container-descriptor>
+</weblogic-web-app>
